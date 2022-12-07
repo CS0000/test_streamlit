@@ -59,8 +59,15 @@ d = go.Scattermapbox(lat = df_select['la'],
                         # name = str(i),
                         hoverinfo='text')
 
-   
 Fig = go.Figure(d)
+Fig.update_layout(mapbox=dict(style='open-street-map',
+                              center=dict(lat=52.3,lon=4.9),
+                              zoom=5
+                              )
+                              )
+# Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# Fig.update_layout(legend=dict(y=0.2,x=1))
+
 
 with plot_spot:
     st.plotly_chart(Fig)
@@ -68,13 +75,7 @@ with plot_spot:
 st.write(date_range)
 st.write(select_date)
 st.write(Fig.data)
-# Fig.update_layout(mapbox=dict(style='open-street-map',
-#                               center=dict(lat=52.3,lon=4.9),
-#                               zoom=5
-#                               )
-#                               )
-# Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# Fig.update_layout(legend=dict(y=0.2,x=1))
+
 # # Fig.write_html('test.html')
 # st.plotly_chart(Fig)
 
