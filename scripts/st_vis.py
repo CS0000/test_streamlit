@@ -38,6 +38,7 @@ for i in date_list:
 
 
 def vis(se):
+    plot_spot = st.empty()
     df_select = df.loc[df['date_belong'].isin(se)]
     d = go.Scattermapbox(lat = df_select['la'],
                             lon = df_select['lo'],
@@ -59,7 +60,8 @@ def vis(se):
     st.write(date_range)
     st.write(se)
     st.write(Fig.data)
-    st.plotly_chart(Fig)
+    with plot_spot:
+        st.plotly_chart(Fig)
 
 vis(select_date)
 
