@@ -24,16 +24,16 @@ date_list = sorted(date_list)
 
 # plot_spot = st.empty()
 
-date_range = st.slider(
-    "select date range or point:",
-    value=(date_list[0], date_list[-1]))
+# date_range = st.slider(
+#     "select date range or point:",
+#     value=(date_list[0], date_list[-1]))
 
 # st.write(date_range)
 
-select_date = []
-for i in date_list:
-    if (i <= date_range[1]) & (i >= date_range[0]):
-        select_date.append(i)
+# select_date = []
+# for i in date_list:
+#     if (i <= date_range[1]) & (i >= date_range[0]):
+#         select_date.append(i)
 
 # st.write(select_date)
 
@@ -65,11 +65,14 @@ plot_spot = st.empty() # holding the spot for the graph
 
 #make the widgets that will change the graph
 line = st.selectbox("Choose a column:", chart_data.columns)
-
+date_range = st.slider(
+    "select date range or point:",
+    value=(-2, 2))
 title = st.radio("Decide to include a title:", ["Yes", "No"])
 
 #now code the plotly chart based on the widget selection
-fig = px.line(chart_data, x=chart_data.index, y=line)
+chart_data_ = chart_data.loc[chart_data[line].isin(date_range),:]
+fig = px.line(chart_data_, x=chart_data_.index, y=line)
 
 if title == "Yes":
     fig.update_layout(title="My graph title")
