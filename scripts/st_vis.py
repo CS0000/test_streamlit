@@ -65,13 +65,13 @@ plot_spot = st.empty() # holding the spot for the graph
 
 #make the widgets that will change the graph
 line = st.selectbox("Choose a column:", chart_data.columns)
-date_range = st.slider(
-    "select date range or point:",
+d1,d2 = st.slider(
+    "select date range or point:",-2,2,
     value=(-2, 2))
 title = st.radio("Decide to include a title:", ["Yes", "No"])
 
 #now code the plotly chart based on the widget selection
-chart_data_ = chart_data.loc[chart_data[line].isin(date_range),:]
+chart_data_ = chart_data.loc[(chart_data[line]<d2)&(chart_data[line]>d1),:]
 fig = px.line(chart_data_, x=chart_data_.index, y=line)
 
 if title == "Yes":
