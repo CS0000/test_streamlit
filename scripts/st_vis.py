@@ -42,7 +42,7 @@ def vis(se):
     d = go.Scattermapbox(lat = df_select['la'],
                             lon = df_select['lo'],
                             mode='markers',
-                            marker = dict(size=12), # go.scattermapbox.Marker
+                            marker = dict(size=12,color='black'), # go.scattermapbox.Marker
                             text = df_select['hover'].tolist(),
                             # name = str(i),
                             hoverinfo='text')
