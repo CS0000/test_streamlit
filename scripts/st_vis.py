@@ -13,7 +13,7 @@ import time
 df = pack(file_name='data/test_df.pkl',mode='rb')
 # la	lo	hover	date_belong location  raw_location
 # st.write(df.head())
-
+plot_spot = st.empty()
 # date range slider 
 date_list = []
 for i in df['date_belong'].tolist():
@@ -38,7 +38,7 @@ for i in date_list:
 
 
 def vis(se):
-    plot_spot = st.empty()
+    global plot_spot
     df_select = df.loc[df['date_belong'].isin(se)]
     d = go.Scattermapbox(lat = df_select['la'],
                             lon = df_select['lo'],
