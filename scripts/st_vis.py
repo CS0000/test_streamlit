@@ -46,17 +46,18 @@ for i in date_list:
 
 st.write(select_date)
 
-# df_select = df.loc[df['date_belong'].isin(select_date)]
-# d = go.Scattermapbox(lat = df_select['la'],
-#                         lon = df_select['lo'],
-#                         mode='markers',
-#                         marker = dict(size=12), # go.scattermapbox.Marker
-#                         text = df_select['hover'].tolist(),
-#                         # name = str(i),
-#                         hoverinfo='text')
+df_select = df.loc[df['date_belong'].isin(select_date)]
+d = go.Scattermapbox(lat = df_select['la'],
+                        lon = df_select['lo'],
+                        mode='markers',
+                        marker = dict(size=12), # go.scattermapbox.Marker
+                        text = df_select['hover'].tolist(),
+                        # name = str(i),
+                        hoverinfo='text')
 
    
-# Fig = go.Figure(d)
+Fig = go.Figure(d)
+st.write(Fig.data)
 # Fig.update_layout(mapbox=dict(style='open-street-map',
 #                               center=dict(lat=52.3,lon=4.9),
 #                               zoom=5
@@ -68,8 +69,8 @@ st.write(select_date)
 # st.plotly_chart(Fig)
 
 
-if __name__ == "__main__":
-    # pass
-    # st.write('You selected:', chronicle_select)
-    # st.write("date range: ", date_range)
-    print('*********************************************************')
+# if __name__ == "__main__":
+#     # pass
+#     # st.write('You selected:', chronicle_select)
+#     # st.write("date range: ", date_range)
+#     print('*********************************************************')
