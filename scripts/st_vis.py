@@ -25,7 +25,7 @@ plot_spot = st.empty()
 d1,d2 = st.slider(
     "select date range or point:",
     value=(date_list[0], date_list[-1]))
-title = st.radio("Decide to include a title:", ["Yes", "No"])
+
 
 
 df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
