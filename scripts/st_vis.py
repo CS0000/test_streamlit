@@ -39,14 +39,14 @@ date_range = st.slider(
     "select date range or point:",
     value=(date_list[0], date_list[-1]))
 
-st.write(date_range)
+# st.write(date_range)
 
 select_date = []
 for i in date_list:
     if (i <= date_range[1]) & (i >= date_range[0]):
         select_date.append(i)
 
-st.write(select_date)
+# st.write(select_date)
 
 
 
@@ -61,9 +61,13 @@ d = go.Scattermapbox(lat = df_select['la'],
 
    
 Fig = go.Figure(d)
-st.write(Fig.data)
+
 with plot_spot:
     st.plotly_chart(Fig)
+
+st.write(date_range)
+st.write(select_date)
+st.write(Fig.data)
 # Fig.update_layout(mapbox=dict(style='open-street-map',
 #                               center=dict(lat=52.3,lon=4.9),
 #                               zoom=5
