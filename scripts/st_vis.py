@@ -24,7 +24,7 @@ import time
 # ../data/test_df.pkl
 df = pack(file_name='data/test_df.pkl',mode='rb')
 # la	lo	hover	date_belong location  raw_location
-st.write(df.head())
+# st.write(df.head())
 
 # date range slider 
 date_list = []
