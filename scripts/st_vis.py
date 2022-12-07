@@ -33,6 +33,8 @@ for i in df['date_belong'].tolist():
 df['date_belong'] = date_list
 date_list = sorted(date_list)
 
+plot_spot = st.empty()
+
 date_range = st.slider(
     "select date range or point:",
     value=(date_list[0], date_list[-1]))
@@ -46,6 +48,8 @@ for i in date_list:
 
 st.write(select_date)
 
+
+
 df_select = df.loc[df['date_belong'].isin(select_date)]
 d = go.Scattermapbox(lat = df_select['la'],
                         lon = df_select['lo'],
@@ -58,6 +62,8 @@ d = go.Scattermapbox(lat = df_select['la'],
    
 Fig = go.Figure(d)
 st.write(Fig.data)
+with plot_spot:
+    st.plotly_chart(Fig)
 # Fig.update_layout(mapbox=dict(style='open-street-map',
 #                               center=dict(lat=52.3,lon=4.9),
 #                               zoom=5
