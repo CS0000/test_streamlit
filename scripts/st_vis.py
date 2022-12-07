@@ -8,18 +8,6 @@ import plotly.express as px
 import time
 
 
-# ../20221122/1791_Purm_Louw_04.xlsx
-# ../20221122/1791_Purm_Louw_04.xml
-# st.session_state.update(st.session_state)
-
-# start_time = time.time()
-# chronicle_select = st.multiselect(
-#     'select chronicles: ',
-#     ['1791_Purm_Louw_04'],
-#     ['1791_Purm_Louw_04']) # defalut value shown in selecting box
-# # print(chronicle_select)   # ['1791_Purm_Louw_04']
-
-
 # read df for plotly
 # ../data/test_df.pkl
 df = pack(file_name='data/test_df.pkl',mode='rb')
@@ -33,7 +21,7 @@ for i in df['date_belong'].tolist():
 df['date_belong'] = date_list
 date_list = sorted(date_list)
 
-plot_spot = st.empty()
+# plot_spot = st.empty()
 
 date_range = st.slider(
     "select date range or point:",
@@ -49,32 +37,31 @@ for i in date_list:
 # st.write(select_date)
 
 
+def vis(se):
+    df_select = df.loc[df['date_belong'].isin(se)]
+    d = go.Scattermapbox(lat = df_select['la'],
+                            lon = df_select['lo'],
+                            mode='markers',
+                            marker = dict(size=12), # go.scattermapbox.Marker
+                            text = df_select['hover'].tolist(),
+                            # name = str(i),
+                            hoverinfo='text')
 
-df_select = df.loc[df['date_belong'].isin(select_date)]
-d = go.Scattermapbox(lat = df_select['la'],
-                        lon = df_select['lo'],
-                        mode='markers',
-                        marker = dict(size=12), # go.scattermapbox.Marker
-                        text = df_select['hover'].tolist(),
-                        # name = str(i),
-                        hoverinfo='text')
+    Fig = go.Figure(d)
+    Fig.update_layout(mapbox=dict(style='open-street-map',
+                                center=dict(lat=52.3,lon=4.9),
+                                zoom=5
+                                )
+                                )
+    Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    Fig.update_layout(legend=dict(y=0.2,x=1))
 
-Fig = go.Figure(d)
-Fig.update_layout(mapbox=dict(style='open-street-map',
-                              center=dict(lat=52.3,lon=4.9),
-                              zoom=5
-                              )
-                              )
-# Fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# Fig.update_layout(legend=dict(y=0.2,x=1))
-
-
-with plot_spot:
+    st.write(date_range)
+    st.write(se)
+    st.write(Fig.data)
     st.plotly_chart(Fig)
 
-st.write(date_range)
-st.write(select_date)
-st.write(Fig.data)
+vis(select_date)
 
 # # Fig.write_html('test.html')
 # st.plotly_chart(Fig)
