@@ -31,24 +31,24 @@ d1,d2 = st.slider(
 df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
 
 Fig = px.scatter_mapbox(df_select,lat='la',lon='lo',
-                        hover_name='hover',
-                        mapbox_style='open-street-map',
-                        center=dict(lat=52.3,lon=4.9),
-                        zoom=15,
-                        width=150,height=100)
+                        hover_name='hover'
+                        # mapbox_style='open-street-map',
+                        # center=dict(lat=52.3,lon=4.9),
+                        )
+                        # width=150,height=100)
 # fig = go.Figure(data=go.Scattermapbox(lat = df_select['la'],
 #                             lon = df_select['lo'],
 #                             mode='markers',
 #                             marker = dict(size=12,color='black'), 
 #                             text = df_select['hover'].tolist(),
 #                             hoverinfo='text'))
-# fig.update_layout(mapbox=dict(style='open-street-map',
-#                                 center=dict(lat=52.3,lon=4.9),
-#                                 zoom=5
-#                                 ),
-#                       margin={"r":0,"t":0,"l":0,"b":0},
-#                       legend=dict(y=0.2,x=1)
-#                                 )
+Fig.update_layout(mapbox=dict(style='open-street-map',
+                                center=dict(lat=52.3,lon=4.9),
+                                zoom=5
+                                ),
+                      margin={"r":0,"t":0,"l":0,"b":0},
+                      legend=dict(y=0.2,x=1)
+                                )
 
 st.plotly_chart(Fig)
 
