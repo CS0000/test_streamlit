@@ -24,7 +24,7 @@ plot_spot = st.empty()
 
 d1,d2 = st.slider(
     "select date range or point:",
-    value=(date_list[0], date_list[-1]))
+    date_list[0], date_list[-1],value=(date_list[20],date_list[-20]))
 
 
 
@@ -33,9 +33,8 @@ df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
 fig = go.Figure(data=go.Scattermapbox(lat = df_select['la'],
                             lon = df_select['lo'],
                             mode='markers',
-                            marker = dict(size=12,color='black'), # go.scattermapbox.Marker
+                            marker = dict(size=12,color='black'), 
                             text = df_select['hover'].tolist(),
-                            # name = str(i),
                             hoverinfo='text'))
 fig.update_layout(mapbox=dict(style='open-street-map',
                                 center=dict(lat=52.3,lon=4.9),
