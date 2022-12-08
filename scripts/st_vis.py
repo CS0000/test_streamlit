@@ -9,7 +9,7 @@ import plotly.express as px
 
 
 # read df for plotly
-df = pack(file_name='../data/test_df.pkl',mode='rb')
+df = pack(file_name='data/test_df.pkl',mode='rb')
 
 date_list = []
 for i in df['date_belong'].tolist():
