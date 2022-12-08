@@ -21,7 +21,7 @@ date_list = sorted(date_list)
 st.title("Plotly Graphs test")
 
 
-
+plot_spot = st.empty()
 d1,d2 = st.slider(
     "select date range or point:",
     date_list[0], date_list[-1],value=(date_list[0],date_list[10]))
@@ -49,8 +49,8 @@ Fig.update_layout(mapbox=dict(style='open-street-map',
                       margin={"r":0,"t":0,"l":0,"b":0},
                       legend=dict(y=0.2,x=1)
                                 )
-
-st.plotly_chart(Fig)
+with plot_spot:
+    st.plotly_chart(Fig)
 
 
 
