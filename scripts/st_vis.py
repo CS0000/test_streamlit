@@ -24,7 +24,7 @@ plot_spot = st.empty()
 
 d1,d2 = st.slider(
     "select date range or point:",
-    date_list[0], date_list[-1],value=(date_list[20],date_list[-20]))
+    date_list[0], date_list[-1],value=(date_list[0],date_list[10]))
 
 
 
