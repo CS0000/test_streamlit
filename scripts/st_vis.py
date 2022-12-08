@@ -26,7 +26,7 @@ d1,d2 = st.slider(
     "select date range or point:",
     date_list[0], date_list[-1],value=(date_list[0],date_list[10]))
 
-plot_spot = st.container()
+plot_spot = st.empty()
 
 df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
 df_select.loc[:,'size'] = 6
