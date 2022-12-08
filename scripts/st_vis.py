@@ -29,11 +29,12 @@ d1,d2 = st.slider(
 plot_spot = st.empty()
 
 df_select = df.loc[(df['date_belong']<=d2)&(df['date_belong']>=d1),:]
-# df_select.loc[:,'size'] = 6
+df_select.loc[:,'size'] = 6
 Fig = px.scatter_mapbox(df_select,
                         lat='la',lon='lo',
                         hover_name='hover',
                         size_max=12,
+                        size='size',
                         # mapbox_style='open-street-map',
                         # center=dict(lat=52.3,lon=4.9),
                         width=1000,height=600)
